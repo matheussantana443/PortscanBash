@@ -1,11 +1,11 @@
 #!/bin/bash
-if ["$1" == "" ]
+if [ "$1" == "" ]
 then
 	echo "Psykozee - PortScan"
 	echo "Modo de uso: $0 REDE PORTA"
 	echo "Exemplo: $0 172.16.1 80"
 else 
-for ip in {1..254} 
+for ip in {1..254} #voce pode alterar o range de portas mudando o numero dentro das chaves
 do 
 hping3 -S -p $2 -c $1.$ip 2> /dev/null | grep "Flags=SA" | cut -d " " -f 2 | cut -d "=" -f 2; 
 done 
